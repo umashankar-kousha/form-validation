@@ -19,6 +19,7 @@ input {
   font-weight: 600;
   margin: 5px 0px !important;
   font-size: 16px;
+  border-bottom: 1px solid #49b009;
 }
 
 input::placeholder {
