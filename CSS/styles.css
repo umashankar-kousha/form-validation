@@ -23,11 +23,11 @@ input {
 
 input::placeholder {
   color: #757575;
-  font-size: 12px;
+  font-size: 15px;
 }
 
 label {
-  font-size: 16px;
+  font-size: 13px;
 
   font-weight: 600;
   margin-left: 5px;
@@ -39,4 +39,8 @@ label {
 
 .hide {
   display: none;
+}
+
+.invalid-text {
+  font-size: 9px;
 }
