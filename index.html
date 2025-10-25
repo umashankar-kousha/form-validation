@@ -20,17 +20,21 @@
           <div class="d-flex flex-column mb-3 col-md-6 col-12">
             <label for="fullName">Full Name</label>
             <input type="text" placeholder="Full Name" id="fullName" />
-            <p id="fullNameWarn" class="text-danger">Required</p>
+            <p id="fullNameWarn" class="text-danger hide"></p>
           </div>
           <div class="d-flex flex-column mb-3 col-12 col-md-6">
             <label for="email">Email</label>
-            <input type="email" placeholder="Email" id="email" />
-            <p id="emailWarn" class="text-danger">Required</p>
+            <input
+              type="email"
+              placeholder="EX : example@domain.com"
+              id="email"
+            />
+            <p id="emailWarn" class="text-danger hide"></p>
           </div>
           <div class="d-flex flex-column mb-3 col-12 col-md-6">
             <label for="password">Password</label>
             <input type="password" placeholder="Password" id="password" />
-            <p id="passwordWarn" class="text-danger">Required</p>
+            <p id="passwordWarn" class="text-danger hide"></p>
           </div>
           <div class="d-flex flex-column mb-3 col-12 col-md-6">
             <label for="confirmPassword"> Confirm Password</label>
@@ -39,7 +43,7 @@
               placeholder="Confirm Password"
               id="confirmPassword"
             />
-            <p id="confirmPasswordWarn" class="text-danger">Required</p>
+            <p id="confirmPasswordWarn" class="text-danger hide"></p>
           </div>
           <div class="d-flex flex-column mb-3 col-12 col-md-6">
             <div class="d-flex align-items-center">
@@ -49,7 +53,7 @@
                 <span class="text-primary">Trems & Conditions</span></label
               >
             </div>
-            <p id="confirmPasswordWarn" class="text-danger">Required</p>
+            <p id="confirmPasswordWarn" class="text-danger"></p>
           </div>
           <div class="col-12 text-center">
             <button class="btn btn-primary">Submit</button>

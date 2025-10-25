@@ -32,3 +32,11 @@ label {
   font-weight: 600;
   margin-left: 5px;
 }
+
+.invalid {
+  border: 1px solid #f74402;
+}
+
+.hide {
+  display: none;
+}
