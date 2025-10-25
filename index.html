@@ -15,8 +15,8 @@
   <body>
     <main class="bg-container">
       <section class="container shadow-lg rounded p-4">
-        <form class="row">
-          <h1 class="text-center">Sign Up</h1>
+        <form class="row" id="form">
+          <h1 class="text-center mb-4">Sign Up</h1>
           <div class="d-flex flex-column mb-3 col-md-6 col-12">
             <label for="fullName">Full Name</label>
             <input type="text" placeholder="Full Name" id="fullName" />
@@ -51,15 +51,15 @@
           <div class="d-flex flex-column mb-3 col-12 col-md-6">
             <div class="d-flex align-items-center">
               <input type="checkbox" id="terms" required />
-              <label for="terms"
-                >I accept the
-                <span class="text-primary">Trems & Conditions</span></label
+              <label for="terms">I accept the </label>
+              <span class="text-primary" onclick="(showTermsAndConditions())"
+                >Trems & Conditions</span
               >
             </div>
             <p id="confirmPasswordWarn" class="text-danger"></p>
           </div>
           <div class="col-12 text-center">
-            <button class="btn btn-primary">Submit</button>
+            <button class="btn btn-primary" type="submit">Submit</button>
           </div>
         </form>
       </section>

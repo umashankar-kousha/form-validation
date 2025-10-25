@@ -1,7 +1,9 @@
+const formEl = document.getElementById("form");
 const fullNameEl = document.getElementById("fullName");
 const emailEl = document.getElementById("email");
 const passwordEl = document.getElementById("password");
 const confirmPasswordEl = document.getElementById("confirmPassword");
+const termsEl = document.getElementById("terms");
 
 const fullNameWarnEl = document.getElementById("fullNameWarn");
 const emailWarnEl = document.getElementById("emailWarn");
@@ -10,19 +12,33 @@ const confirmPasswordWarnEl = document.getElementById("confirmPasswordWarn");
 
 const validateFullName = function () {
   let fullName = fullNameEl.value.trim(" ");
+
   if (fullName == "") {
     fullNameWarnEl.textContent = "*Required";
     fullNameWarnEl.classList.remove("hide");
     fullNameEl.classList.add("invalid");
+    return false;
+  } else {
+    let nameRegix = /^[A-Za-z ]+$/;
+    isValidName = nameRegix.test(fullName);
+    if (!isValidName) {
+      fullNameWarnEl.textContent = "*Full Name Should be Alphabet";
+      fullNameWarnEl.classList.remove("hide");
+      fullNameEl.classList.add("invalid");
+    }
+    return isValidName;
   }
+  return true;
 };
 
 const validateEmail = () => {
   let email = emailEl.value.trim();
+
   if (email == "") {
     emailWarnEl.textContent = "*Required";
     emailWarnEl.classList.remove("hide");
     emailEl.classList.add("invalid");
+    return false;
   } else {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     let isValidEmail = emailRegex.test(email);
@@ -31,7 +47,9 @@ const validateEmail = () => {
       emailWarnEl.classList.remove("hide");
       emailEl.classList.add("invalid");
     }
+    return isValidEmail;
   }
+  return true;
 };
 
 function validatePassword(event) {
@@ -41,6 +59,7 @@ function validatePassword(event) {
     passwordWarnEl.textContent = "*Required";
     passwordWarnEl.classList.remove("hide");
     passwordEl.classList.add("invalid");
+    return false;
   } else {
     let passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
     let isValidPassword = passwordRegex.test(password);
@@ -49,8 +68,10 @@ function validatePassword(event) {
       passwordWarnEl.classList.remove("hide");
       passwordEl.classList.add("invalid");
     }
+    return isValidPassword;
   }
   validateConfirmPassword();
+  return true;
 }
 
 function validateConfirmPassword() {
@@ -63,19 +84,23 @@ function validateConfirmPassword() {
     confirmPasswordWarnEl.textContent = `*Required`;
     confirmPasswordWarnEl.classList.remove("hide");
     confirmPasswordEl.classList.add("invalid");
+    return false;
   } else if (!isValidPassword) {
     confirmPasswordWarnEl.textContent = `*Please Enter Valid Password minimum 8 characters,atleast one Upper Case,one Lower Case,& one digit,and only thease characters '!@#$%^&*'`;
     confirmPasswordWarnEl.classList.remove("hide");
     confirmPasswordEl.classList.add("invalid");
+    return isValidPassword;
   } else if (confirmPassword !== password) {
     confirmPasswordWarnEl.textContent = `*Confirm Password Should be same as Password`;
     confirmPasswordWarnEl.classList.remove("hide");
     confirmPasswordEl.classList.add("invalid");
+    return false;
   } else {
     confirmPasswordWarnEl.textContent = "";
     confirmPasswordWarnEl.classList.add("hide");
     confirmPasswordEl.classList.remove("invalid");
   }
+  return true;
 }
 
 fullNameEl.addEventListener("blur", () => {
@@ -117,3 +142,28 @@ confirmPasswordEl.addEventListener("focus", () => {
   confirmPasswordWarnEl.classList.add("hide");
   confirmPasswordEl.classList.remove("invalid");
 });
+
+formEl.addEventListener("submit", (event) => {
+  event.preventDefault();
+  let isValidName = validateFullName();
+  let isValidEmail = validateEmail();
+  let isValidPassword = validatePassword();
+  let isValidConfirmPassword = validateConfirmPassword();
+
+  if (isValidName & isValidEmail & isValidPassword & isValidConfirmPassword) {
+    fullNameEl.value = "";
+    emailEl.value = "";
+    passwordEl.value = "";
+    confirmPasswordEl.value = "";
+    termsEl.checked = false;
+    alert("form submitted Succesfully");
+  }
+});
+
+function showTermsAndConditions() {
+  alert(
+    "Terms and Conditions : By Signing up,you agree to our rules and policies. Always be respecful and fallow our guidelines."
+  );
+}
+
+let pa = "Koti@6302";
