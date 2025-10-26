@@ -1,3 +1,4 @@
+// DOM Elements
 const formEl = document.getElementById("form");
 const fullNameEl = document.getElementById("fullName");
 const emailEl = document.getElementById("email");
@@ -10,6 +11,7 @@ const emailWarnEl = document.getElementById("emailWarn");
 const passwordWarnEl = document.getElementById("passwordWarn");
 const confirmPasswordWarnEl = document.getElementById("confirmPasswordWarn");
 
+// Validating full name:
 const validateFullName = function () {
   let fullName = fullNameEl.value.trim(" ");
 
@@ -20,7 +22,7 @@ const validateFullName = function () {
     return false;
   } else {
     let nameRegix = /^[A-Za-z ]+$/;
-    isValidName = nameRegix.test(fullName);
+    let isValidName = nameRegix.test(fullName);
     if (!isValidName) {
       fullNameWarnEl.textContent = "*Full Name Should be Alphabet";
       fullNameWarnEl.classList.remove("hide");
@@ -31,6 +33,7 @@ const validateFullName = function () {
   return true;
 };
 
+// Validating Email :
 const validateEmail = () => {
   let email = emailEl.value.trim();
 
@@ -52,8 +55,10 @@ const validateEmail = () => {
   return true;
 };
 
+// Validate Password:
 function validatePassword(event) {
   let password = passwordEl.value.trim();
+  validateConfirmPassword(); // User after Entering password it Validates confirm password
 
   if (password == "") {
     passwordWarnEl.textContent = "*Required";
@@ -70,10 +75,11 @@ function validatePassword(event) {
     }
     return isValidPassword;
   }
-  validateConfirmPassword();
+
   return true;
 }
 
+// Validating Confirm Password:
 function validateConfirmPassword() {
   let password = passwordEl.value.trim();
   let confirmPassword = confirmPasswordEl.value.trim();
@@ -103,6 +109,8 @@ function validateConfirmPassword() {
   return true;
 }
 
+// All inputs Blur Events For Validation:
+
 fullNameEl.addEventListener("blur", () => {
   validateFullName();
 });
@@ -119,6 +127,7 @@ confirmPasswordEl.addEventListener("blur", () => {
   validateConfirmPassword();
 });
 
+// All Inputs Focus Events For revok Warning and Styles:
 fullNameEl.addEventListener("focus", () => {
   fullNameWarnEl.textContent = "";
   fullNameWarnEl.classList.add("hide");
@@ -143,27 +152,37 @@ confirmPasswordEl.addEventListener("focus", () => {
   confirmPasswordEl.classList.remove("invalid");
 });
 
+// Final Form Submission
+
 formEl.addEventListener("submit", (event) => {
   event.preventDefault();
+
+  // Check all inputs is valid before Submission:
   let isValidName = validateFullName();
   let isValidEmail = validateEmail();
   let isValidPassword = validatePassword();
   let isValidConfirmPassword = validateConfirmPassword();
 
-  if (isValidName & isValidEmail & isValidPassword & isValidConfirmPassword) {
+  // All Inputs are valid then form submits
+  if (
+    isValidName &&
+    isValidEmail &&
+    isValidPassword &&
+    isValidConfirmPassword
+  ) {
+    // form reset after Submission
     fullNameEl.value = "";
     emailEl.value = "";
     passwordEl.value = "";
     confirmPasswordEl.value = "";
     termsEl.checked = false;
-    alert("form submitted Succesfully");
+    alert("form submitted Succesfully"); // User know form is submitted
   }
 });
 
+// Shows T&C as an aleret
 function showTermsAndConditions() {
   alert(
     "Terms and Conditions : By Signing up,you agree to our rules and policies. Always be respecful and fallow our guidelines."
   );
 }
-
-let pa = "Koti@6302";
