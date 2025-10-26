@@ -181,8 +181,12 @@ formEl.addEventListener("submit", (event) => {
     fullNameEl.value = "";
     emailEl.value = "";
     passwordEl.value = "";
+    passwordEl.type = "password";
     confirmPasswordEl.value = "";
+    confirmPasswordEl.type = "password";
     termsEl.checked = false;
+    passwordShowEl.src = `./icons/hide.svg`;
+    confirmPasswordShowEl.src = `./icons/hide.svg`;
     alert("form submitted Succesfully"); // User know form is submitted
   }
 });
