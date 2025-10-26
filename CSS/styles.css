@@ -20,6 +20,7 @@ input {
   margin: 5px 0px !important;
   font-size: 16px;
   border-bottom: 1px solid #49b009;
+  height: 50px;
 }
 
 input::placeholder {
@@ -32,6 +33,35 @@ label {
 
   font-weight: 600;
   margin-left: 5px;
+}
+
+.password-container,
+.confirm-password-container {
+  border-bottom: 1px solid #49b009;
+  background-color: #f4f4f4;
+  border-radius: 5px;
+  height: 50px;
+  padding: 5px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#password,
+#confirmPassword {
+  width: 80%;
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.hide-show-btn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 5px;
+  width: 50px;
+  cursor: pointer;
 }
 
 .invalid {

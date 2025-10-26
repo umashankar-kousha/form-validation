@@ -10,6 +10,12 @@ const fullNameWarnEl = document.getElementById("fullNameWarn");
 const emailWarnEl = document.getElementById("emailWarn");
 const passwordWarnEl = document.getElementById("passwordWarn");
 const confirmPasswordWarnEl = document.getElementById("confirmPasswordWarn");
+const passwordContainer = document.querySelector(".password-container");
+const confirmPasswordContainer = document.querySelector(
+  ".confirm-password-container"
+);
+const passwordShowEl = document.getElementById("passwordShow");
+const confirmPasswordShowEl = document.getElementById("confirmPasswordShow");
 
 // Validating full name:
 const validateFullName = function () {
@@ -63,7 +69,7 @@ function validatePassword(event) {
   if (password == "") {
     passwordWarnEl.textContent = "*Required";
     passwordWarnEl.classList.remove("hide");
-    passwordEl.classList.add("invalid");
+    passwordContainer.classList.add("invalid");
     return false;
   } else {
     let passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
@@ -71,7 +77,7 @@ function validatePassword(event) {
     if (!isValidPassword) {
       passwordWarnEl.textContent = `*Please Enter Valid Password minimum 8 characters,atleast one Upper Case,one Lower Case,& one digit,and only thease characters '!@#$%^&*'`;
       passwordWarnEl.classList.remove("hide");
-      passwordEl.classList.add("invalid");
+      passwordContainer.classList.add("invalid");
     }
     return isValidPassword;
   }
@@ -89,22 +95,22 @@ function validateConfirmPassword() {
   if (confirmPassword == "") {
     confirmPasswordWarnEl.textContent = `*Required`;
     confirmPasswordWarnEl.classList.remove("hide");
-    confirmPasswordEl.classList.add("invalid");
+    confirmPasswordContainer.classList.add("invalid");
     return false;
   } else if (!isValidPassword) {
     confirmPasswordWarnEl.textContent = `*Please Enter Valid Password minimum 8 characters,atleast one Upper Case,one Lower Case,& one digit,and only thease characters '!@#$%^&*'`;
     confirmPasswordWarnEl.classList.remove("hide");
-    confirmPasswordEl.classList.add("invalid");
+    confirmPasswordContainer.classList.add("invalid");
     return isValidPassword;
   } else if (confirmPassword !== password) {
     confirmPasswordWarnEl.textContent = `*Confirm Password Should be same as Password`;
     confirmPasswordWarnEl.classList.remove("hide");
-    confirmPasswordEl.classList.add("invalid");
+    confirmPasswordContainer.classList.add("invalid");
     return false;
   } else {
     confirmPasswordWarnEl.textContent = "";
     confirmPasswordWarnEl.classList.add("hide");
-    confirmPasswordEl.classList.remove("invalid");
+    confirmPasswordContainer.classList.remove("invalid");
   }
   return true;
 }
@@ -143,18 +149,19 @@ emailEl.addEventListener("focus", () => {
 passwordEl.addEventListener("focus", () => {
   passwordWarnEl.textContent = "";
   passwordWarnEl.classList.add("hide");
-  passwordEl.classList.remove("invalid");
+  passwordContainer.classList.remove("invalid");
 });
 
 confirmPasswordEl.addEventListener("focus", () => {
   confirmPasswordWarnEl.textContent = "";
   confirmPasswordWarnEl.classList.add("hide");
-  confirmPasswordEl.classList.remove("invalid");
+  confirmPasswordContainer.classList.remove("invalid");
 });
 
 // Final Form Submission
 
 formEl.addEventListener("submit", (event) => {
+  console.log("triggered");
   event.preventDefault();
 
   // Check all inputs is valid before Submission:
@@ -163,7 +170,7 @@ formEl.addEventListener("submit", (event) => {
   let isValidPassword = validatePassword();
   let isValidConfirmPassword = validateConfirmPassword();
 
-  // All Inputs are valid then form submits
+  // All Inputs are valid  form submits:
   if (
     isValidName &&
     isValidEmail &&
@@ -180,9 +187,24 @@ formEl.addEventListener("submit", (event) => {
   }
 });
 
-// Shows T&C as an aleret
+// Shows T&C as an aleret:
 function showTermsAndConditions() {
   alert(
     "Terms and Conditions : By Signing up,you agree to our rules and policies. Always be respecful and fallow our guidelines."
   );
+}
+
+// Show password when user clicks on eye icon:
+function passwordHideShow(event, inputId, iconId) {
+  event.preventDefault();
+  let targetInput = document.getElementById(inputId);
+  let targetIcon = document.getElementById(iconId);
+  let isHideIcon = targetIcon.src.includes(`/icons/hide.svg`);
+  if (isHideIcon) {
+    targetInput.type = "text";
+    targetIcon.src = `./icons/show.svg`;
+  } else {
+    targetInput.type = "password";
+    targetIcon.src = `./icons/hide.svg`;
+  }
 }
